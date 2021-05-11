@@ -154,7 +154,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">171</span>
+          <span class="site-state-item-count">172</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -196,6 +196,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1202-smallest-string-with-swaps/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LeetCode/leetcode-1202-smallest-string-with-swaps/" class="post-title-link" itemprop="url">LeetCode 1202. Smallest String With Swaps</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-11 22:25:38" itemprop="dateCreated datePublished" datetime="2021-01-11T22:25:38+08:00">2021-01-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-18 00:10:09" itemprop="dateModified" datetime="2021-01-18T00:10:09+08:00">2021-01-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="tabs" id="leetcode-1202-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-1202-solution-1">Cpp</a></li><li class="tab"><a href="#leetcode-1202-solution-2">Python</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-1202-solution-1"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">smallestStringWithSwaps</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; pairs)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(s.size(), <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; m(s.size());</span><br><span class="line">        <span class="keyword">if</span> (pairs.size() == <span class="number">0</span>) <span class="keyword">return</span> s;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p : pairs) &#123;</span><br><span class="line">            <span class="keyword">auto</span> i = find(f, p[<span class="number">0</span>]), j = find(f, p[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">if</span> (i != j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (-f[i] &lt; -f[j])</span><br><span class="line">                    swap(i ,j);</span><br><span class="line">                f[i] += f[j];</span><br><span class="line">                f[j] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); ++i)</span><br><span class="line">            m[find(f, i)].push_back(i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; ids : m) &#123;</span><br><span class="line">            <span class="built_in">string</span> ss = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> id : ids)</span><br><span class="line">                ss += s[id];</span><br><span class="line">            sort(ss.begin(), ss.end());</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ids.size(); ++i)</span><br><span class="line">                s[ids[i]] = ss[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; f, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> f[i] &lt; <span class="number">0</span> ? i : f[i] = find(f, f[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-1202-solution-2"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">smallestStringWithSwaps</span>(<span class="params">self, s: <span class="built_in">str</span>, pairs: List[List[<span class="built_in">int</span>]]</span>) -&gt; str:</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">UF</span>:</span></span><br><span class="line">            <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, n</span>):</span> self.p = <span class="built_in">list</span>(<span class="built_in">range</span>(n))</span><br><span class="line">            <span class="function"><span class="keyword">def</span> <span class="title">union</span>(<span class="params">self, x, y</span>):</span> self.p[self.find(x)] = self.find(y)</span><br><span class="line">            <span class="function"><span class="keyword">def</span> <span class="title">find</span>(<span class="params">self, x</span>):</span></span><br><span class="line">                <span class="keyword">if</span> x != self.p[x]: self.p[x] = self.find(self.p[x])</span><br><span class="line">                <span class="keyword">return</span> self.p[x]</span><br><span class="line">        uf, m, ans = UF(<span class="built_in">len</span>(s)), defaultdict(<span class="built_in">list</span>), []</span><br><span class="line">        <span class="keyword">for</span> a, b <span class="keyword">in</span> pairs: </span><br><span class="line">            uf.union(a, b)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)): </span><br><span class="line">            m[uf.find(i)].append(s[i])</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> m.keys(): </span><br><span class="line">            m[<span class="built_in">id</span>].sort(reverse=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)): </span><br><span class="line">            ans.append(m[uf.find(i)].pop())</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(ans)</span><br></pre></td></tr></table></figure></div></div></div>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -896,85 +976,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <div class="tabs" id="leetcode-239-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-239-solution-1">Priority Queue</a></li><li class="tab"><a href="#leetcode-239-solution-2">Monotonic Queue</a></li><li class="tab"><a href="#leetcode-239-solution-3">Segment & Pre-processing</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-239-solution-1"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">maxSlidingWindow</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">priority_queue</span>&lt;<span class="built_in">pair</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i)</span><br><span class="line">            q.emplace(nums[i], i);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans = &#123;q.top().first&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            q.emplace(nums[i], i);</span><br><span class="line">            <span class="keyword">while</span> (q.top().second &lt;= i - k)</span><br><span class="line">                q.pop();</span><br><span class="line">            ans.push_back(q.top().first);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-239-solution-2"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">maxSlidingWindow</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!q.empty() &amp;&amp; nums[i] &gt;= nums[q.back()])</span><br><span class="line">                q.pop_back();</span><br><span class="line">            q.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans&#123;nums[q.front()]&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!q.empty() &amp;&amp; nums[i] &gt;= nums[q.back()])</span><br><span class="line">                q.pop_back();</span><br><span class="line">            q.push_back(i);</span><br><span class="line">            <span class="keyword">while</span> (q.front() &lt;= i - k)</span><br><span class="line">                q.pop_front();</span><br><span class="line">            ans.push_back(nums[q.front()]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-239-solution-3"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">maxSlidingWindow</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        vector&lt;int&gt; prefixMax(n), suffixMax(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">            <span class="keyword">if</span> (i % k == <span class="number">0</span>) prefixMax[i] = nums[i];</span><br><span class="line">            <span class="keyword">else</span> prefixMax[i] = max(prefixMax[i - <span class="number">1</span>], nums[i]);</span><br><span class="line">        suffixMax[n - <span class="number">1</span>] = nums[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">            <span class="keyword">if</span> ((i + <span class="number">1</span>) % k == <span class="number">0</span>) suffixMax[i] = nums[i];</span><br><span class="line">            <span class="keyword">else</span> suffixMax[i] = max(suffixMax[i + <span class="number">1</span>], nums[i]);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - k; ++i)</span><br><span class="line">            ans.push_back(max(suffixMax[i], prefixMax[i + k - <span class="number">1</span>]));</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-605-can-place-flowers/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/LeetCode/leetcode-605-can-place-flowers/" class="post-title-link" itemprop="url">LeetCode 605. Can Place Flowers</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-01 20:01:31" itemprop="dateCreated datePublished" datetime="2021-01-01T20:01:31+08:00">2021-01-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-18 00:10:09" itemprop="dateModified" datetime="2021-01-18T00:10:09+08:00">2021-01-18</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPlaceFlowers</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; flowerbed, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = flowerbed.size(), i = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; size) &#123;</span><br><span class="line">            <span class="keyword">if</span> (flowerbed[i]) &#123;</span><br><span class="line">                ++i;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((i == <span class="number">0</span> || !flowerbed[i - <span class="number">1</span>]) &amp;&amp; (i == size - <span class="number">1</span> || !flowerbed[i + <span class="number">1</span>])) &#123;</span><br><span class="line">                flowerbed[i] = <span class="number">1</span>;</span><br><span class="line">                ++cnt;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (cnt &gt;= n) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            ++i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
 
