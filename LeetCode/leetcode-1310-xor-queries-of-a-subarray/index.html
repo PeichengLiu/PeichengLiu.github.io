@@ -20,29 +20,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;example.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
-<meta name="description" content="123456789101112131415class Solution &amp;#123;public:    int maxProfit(vector&lt;int&gt;&amp; prices) &amp;#123;        const int n &#x3D; prices.size();        int buy1 &#x3D; -prices[0], sell1 &#x3D; 0;        int buy2 &#x3D;">
+<meta name="description" content="12345678910111213141516class Solution &amp;#123;public:    vector&lt;int&gt; xorQueries(vector&lt;int&gt;&amp; arr, vector&lt;vector&lt;int&gt;&gt;&amp; queries) &amp;#123;        const int n &#x3D; arr.size();">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 123. Best Time to Buy and Sell Stock III">
-<meta property="og:url" content="http://example.com/LeetCode/leetcode-123-best-time-to-buy-and-sell-stock-iii/index.html">
+<meta property="og:title" content="LeetCode 1310. XOR Queries of a Subarray">
+<meta property="og:url" content="http://example.com/LeetCode/leetcode-1310-xor-queries-of-a-subarray/index.html">
 <meta property="og:site_name" content="Shawn&#39;s Blog">
-<meta property="og:description" content="123456789101112131415class Solution &amp;#123;public:    int maxProfit(vector&lt;int&gt;&amp; prices) &amp;#123;        const int n &#x3D; prices.size();        int buy1 &#x3D; -prices[0], sell1 &#x3D; 0;        int buy2 &#x3D;">
+<meta property="og:description" content="12345678910111213141516class Solution &amp;#123;public:    vector&lt;int&gt; xorQueries(vector&lt;int&gt;&amp; arr, vector&lt;vector&lt;int&gt;&gt;&amp; queries) &amp;#123;        const int n &#x3D; arr.size();">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-09T11:04:52.000Z">
-<meta property="article:modified_time" content="2021-01-17T16:10:08.353Z">
+<meta property="article:published_time" content="2021-05-12T13:57:20.000Z">
+<meta property="article:modified_time" content="2021-05-12T14:00:12.973Z">
 <meta property="article:author" content="Shawn">
-<meta property="article:tag" content="Array">
-<meta property="article:tag" content="Dynamic Programming">
+<meta property="article:tag" content="Bit Manipulation">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/LeetCode/leetcode-123-best-time-to-buy-and-sell-stock-iii/">
+<link rel="canonical" href="http://example.com/LeetCode/leetcode-1310-xor-queries-of-a-subarray/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;example.com&#x2F;LeetCode&#x2F;leetcode-123-best-time-to-buy-and-sell-stock-iii&#x2F;&quot;,&quot;path&quot;:&quot;LeetCode&#x2F;leetcode-123-best-time-to-buy-and-sell-stock-iii&#x2F;&quot;,&quot;title&quot;:&quot;LeetCode 123. Best Time to Buy and Sell Stock III&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;example.com&#x2F;LeetCode&#x2F;leetcode-1310-xor-queries-of-a-subarray&#x2F;&quot;,&quot;path&quot;:&quot;LeetCode&#x2F;leetcode-1310-xor-queries-of-a-subarray&#x2F;&quot;,&quot;title&quot;:&quot;LeetCode 1310. XOR Queries of a Subarray&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>LeetCode 123. Best Time to Buy and Sell Stock III | Shawn's Blog</title><script src="/js/config.js"></script>
+<title>LeetCode 1310. XOR Queries of a Subarray | Shawn's Blog</title><script src="/js/config.js"></script>
   
 
 
@@ -212,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-123-best-time-to-buy-and-sell-stock-iii/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1310-xor-queries-of-a-subarray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -225,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode 123. Best Time to Buy and Sell Stock III
+          LeetCode 1310. XOR Queries of a Subarray
         </h1>
 
         <div class="post-meta-container">
@@ -235,16 +234,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2021-01-09 19:04:52" itemprop="dateCreated datePublished" datetime="2021-01-09T19:04:52+08:00">2021-01-09</time>
+      <time title="Created: 2021-05-12 21:57:20 / Modified: 22:00:12" itemprop="dateCreated datePublished" datetime="2021-05-12T21:57:20+08:00">2021-05-12</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-18 00:10:08" itemprop="dateModified" datetime="2021-01-18T00:10:08+08:00">2021-01-18</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -265,7 +258,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = prices.size();</span><br><span class="line">        <span class="keyword">int</span> buy1 = -prices[<span class="number">0</span>], sell1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> buy2 = -prices[<span class="number">0</span>], sell2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            buy1 = max(buy1, -prices[i]);</span><br><span class="line">            sell1 = max(sell1, buy1 + prices[i]);</span><br><span class="line">            buy2 = max(buy2, sell1 - prices[i]);</span><br><span class="line">            sell2 = max(sell2, buy2 + prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sell2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">xorQueries</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = arr.size();</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">prefix</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span> (++i &lt; n) &#123;</span><br><span class="line">            prefix[i + <span class="number">1</span>] = prefix[i] ^ arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(queries.size())</span></span>;</span><br><span class="line">        i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; q : queries)</span><br><span class="line">            ans[i++] = prefix[q[<span class="number">1</span>] + <span class="number">1</span>] ^ prefix[q[<span class="number">0</span>]];</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -274,22 +267,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Array/" rel="tag"># Array</a>
-              <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
+              <a href="/tags/Bit-Manipulation/" rel="tag"># Bit Manipulation</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/LeetCode/leetcode-189-rotate-array/" rel="prev" title="LeetCode 189. Rotate Array">
-                  <i class="fa fa-chevron-left"></i> LeetCode 189. Rotate Array
+                <a href="/LeetCode/leetcode-1734-decode-xored-permutation/" rel="prev" title="LeetCode 1734. Decode XORed Permutation">
+                  <i class="fa fa-chevron-left"></i> LeetCode 1734. Decode XORed Permutation
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/LeetCode/leetcode-228-summary-ranges/" rel="next" title="LeetCode 228. Summary Ranges">
-                  LeetCode 228. Summary Ranges <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
