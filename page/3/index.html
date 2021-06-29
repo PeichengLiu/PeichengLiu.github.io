@@ -154,7 +154,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-count">244</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -167,7 +167,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">54</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -196,6 +196,152 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1905-count-sub-islands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LeetCode/leetcode-1905-count-sub-islands/" class="post-title-link" itemprop="url">LeetCode 1905. Count Sub Islands</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-06-20 16:32:12 / Modified: 17:28:34" itemprop="dateCreated datePublished" datetime="2021-06-20T16:32:12+08:00">2021-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubIslands</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid1, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = grid1.<span class="built_in">size</span>(), m = grid1[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> ds[] = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        function&lt;<span class="built_in"><span class="keyword">bool</span></span>(<span class="keyword">int</span>, <span class="keyword">int</span>)&gt; dfs = [&amp;](<span class="keyword">int</span> x, <span class="keyword">int</span> y) &#123;</span><br><span class="line">            grid2[x][y] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">bool</span> ans = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (!grid1[x][y]) ans = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) &#123;</span><br><span class="line">                <span class="keyword">int</span> nx = x + ds[i], ny = y + ds[i + <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (nx &gt;= <span class="number">0</span> &amp;&amp; nx &lt; n &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; ny &lt; m &amp;&amp; grid2[nx][ny] &amp;&amp; !<span class="built_in">dfs</span>(nx, ny))</span><br><span class="line">                    ans = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j)</span><br><span class="line">                <span class="keyword">if</span> (grid2[i][j] &amp;&amp; <span class="built_in">dfs</span>(i, j))</span><br><span class="line">                    ++ans;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1906-minimum-absolute-difference-queries/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LeetCode/leetcode-1906-minimum-absolute-difference-queries/" class="post-title-link" itemprop="url">LeetCode 1906. Minimum Absolute Difference Queries</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-06-20 16:29:36 / Modified: 16:35:28" itemprop="dateCreated datePublished" datetime="2021-06-20T16:29:36+08:00">2021-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100001</span>, M = <span class="number">101</span>;</span><br><span class="line"><span class="keyword">int</span> s[N][M];</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">minDifference</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = nums.<span class="built_in">size</span>(), m = queries.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums.<span class="built_in">size</span>(); ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">100</span>; ++j) &#123;</span><br><span class="line">                s[i][j] = s[i - <span class="number">1</span>][j];</span><br><span class="line">                <span class="keyword">if</span> (nums[i - <span class="number">1</span>] == j) ++s[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> l = queries[i][<span class="number">0</span>] + <span class="number">1</span>, r = queries[i][<span class="number">1</span>] + <span class="number">1</span>, pre = <span class="number">0</span>, res = M;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">100</span>; ++j)</span><br><span class="line">                <span class="keyword">if</span> (s[r][j] &gt; s[l - <span class="number">1</span>][j]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (pre) res = <span class="built_in">min</span>(res, j - pre);</span><br><span class="line">                    pre = j;</span><br><span class="line">                &#125;</span><br><span class="line">            ans[i] = res == M ? <span class="number">-1</span> : res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -770,152 +916,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">makeEqual</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = words.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; w : words) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> c : w) &#123;</span><br><span class="line">                ++cnt[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">25</span>; ++i)</span><br><span class="line">            <span class="keyword">if</span> (cnt[i] &amp;&amp; cnt[i] % n)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1894-find-the-student-that-will-replace-the-chalk/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/LeetCode/leetcode-1894-find-the-student-that-will-replace-the-chalk/" class="post-title-link" itemprop="url">LeetCode 1894. Find the Student that Will Replace the Chalk</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-06-13 00:49:44 / Modified: 00:50:23" itemprop="dateCreated datePublished" datetime="2021-06-13T00:49:44+08:00">2021-06-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">chalkReplacer</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; chalk, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> c : chalk) s += c;</span><br><span class="line">        <span class="keyword">int</span> t = k % s, i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (t &gt;= chalk[i]) t -= chalk[i++];</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1895-largest-magic-square/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/LeetCode/leetcode-1895-largest-magic-square/" class="post-title-link" itemprop="url">LeetCode 1895. Largest Magic Square</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-06-13 00:46:03 / Modified: 00:49:26" itemprop="dateCreated datePublished" datetime="2021-06-13T00:46:03+08:00">2021-06-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">using</span> LL = <span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; g, <span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c, <span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">        LL sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = a; i &lt;= c; ++i) &#123;</span><br><span class="line">            LL s = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = b; j &lt;= d; ++j) s += g[i][j];</span><br><span class="line">            <span class="keyword">if</span> (sum &amp;&amp; sum != s) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            sum = s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = b; i &lt;= d; ++i) &#123;</span><br><span class="line">            LL s = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = a; j &lt;= c; ++j) s += g[j][i];</span><br><span class="line">            <span class="keyword">if</span> (sum != s) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        LL s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = a, j = b; i &lt;= c; ++i, ++j)</span><br><span class="line">            s += g[i][j];</span><br><span class="line">        <span class="keyword">if</span> (s != sum) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = a, j = d; i &lt;= c; ++i, --j)</span><br><span class="line">            s+= g[i][j];</span><br><span class="line">        <span class="keyword">return</span> s == sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestMagicSquare</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; g)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = g.<span class="built_in">size</span>(), m = g[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="built_in">min</span>(n, m); k &gt;= <span class="number">2</span>; --k) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i + k - <span class="number">1</span> &lt; n; ++i) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j + k - <span class="number">1</span> &lt; m; ++j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(g, i, j, i + k - <span class="number">1</span>, j + k - <span class="number">1</span>))</span><br><span class="line">                        <span class="keyword">return</span> k;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
 

@@ -154,7 +154,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">242</span>
+          <span class="site-state-item-count">244</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -167,7 +167,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">54</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -196,6 +196,159 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/AcWing/acwing-3663-%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E8%8F%B1%E5%BD%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/AcWing/acwing-3663-%E6%89%93%E5%8D%B0%E6%95%B0%E5%AD%97%E8%8F%B1%E5%BD%A2/" class="post-title-link" itemprop="url">AcWing 3663. 打印数字菱形</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-06-10 21:51:12 / Modified: 21:51:37" itemprop="dateCreated datePublished" datetime="2021-06-10T21:51:12+08:00">2021-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AcWing/" itemprop="url" rel="index"><span itemprop="name">AcWing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; <span class="number">2</span> * n + <span class="number">1</span>; ++r) &#123;</span><br><span class="line">        <span class="keyword">int</span> d = <span class="built_in">abs</span>(r - n);</span><br><span class="line">        <span class="keyword">if</span> (d)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%*s&quot;</span>, <span class="number">2</span> * d, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (c &lt; n - d)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, c++);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, c--);</span><br><span class="line">        <span class="keyword">while</span> (c &gt;= <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>, c--);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-518-coin-change-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LeetCode/leetcode-518-coin-change-2/" class="post-title-link" itemprop="url">LeetCode 518. Coin Change 2</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-10 00:24:48" itemprop="dateCreated datePublished" datetime="2021-06-10T00:24:48+08:00">2021-06-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-12 13:47:59" itemprop="dateModified" datetime="2021-06-12T13:47:59+08:00">2021-06-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="tabs" id="leetcode-518-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-518-solution-1">DP</a></li><li class="tab"><a href="#leetcode-518-solution-2">DP (optimized)</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-518-solution-1"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> amount, vector&lt;<span class="keyword">int</span>&gt;&amp; coins)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = coins.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">f</span>(n + <span class="number">1</span>, vector&lt;<span class="keyword">int</span>&gt;(amount + <span class="number">1</span>));</span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> val = coins[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= amount; ++j) &#123;</span><br><span class="line">                f[i][j] = f[i - <span class="number">1</span>][j];</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k * val &lt;= j; ++k) &#123;</span><br><span class="line">                    f[i][j] += f[i - <span class="number">1</span>][j - k * val];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[n][amount];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-518-solution-2"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> amount, vector&lt;<span class="keyword">int</span>&gt;&amp; coins)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = coins.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(amount + <span class="number">1</span>)</span></span>;</span><br><span class="line">        f[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> val = coins[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = val; j &lt;= amount; ++j) &#123;</span><br><span class="line">                f[j] += f[j - val];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[amount];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -795,152 +948,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumXORSum</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums1.<span class="built_in">size</span>(), range = <span class="number">1</span> &lt;&lt; n;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(range, INT_MAX)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> mask = <span class="number">1</span>; mask &lt; range; ++mask) &#123;</span><br><span class="line">            <span class="keyword">int</span> bits = __builtin_popcount(mask);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> pos = <span class="number">0</span>; pos &lt; n; ++pos)</span><br><span class="line">                <span class="keyword">if</span> (mask &gt;&gt; pos &amp; <span class="number">1</span>)</span><br><span class="line">                    dp[mask] = <span class="built_in">min</span>(dp[mask], dp[mask ^ (<span class="number">1</span> &lt;&lt; pos)] + (nums1[bits - <span class="number">1</span>] ^ nums2[pos]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[range - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/AcWing/acwing-3547-%E7%89%B9%E6%AE%8A%E6%95%B0%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/AcWing/acwing-3547-%E7%89%B9%E6%AE%8A%E6%95%B0%E5%AD%97/" class="post-title-link" itemprop="url">AcWing 3547. 特殊数字</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-05-29 22:16:54 / Modified: 22:28:58" itemprop="dateCreated datePublished" datetime="2021-05-29T22:16:54+08:00">2021-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AcWing/" itemprop="url" rel="index"><span itemprop="name">AcWing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n) &#123;</span><br><span class="line">        ans += n % <span class="number">10</span>;</span><br><span class="line">        n /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % <span class="number">4</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">check</span>(n)) ++n;</span><br><span class="line">    cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/AcWing/acwing-3548-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/AcWing/acwing-3548-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">AcWing 3548. 双端队列</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-05-29 22:15:00 / Modified: 22:24:25" itemprop="dateCreated datePublished" datetime="2021-05-29T22:15:00+08:00">2021-05-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AcWing/" itemprop="url" rel="index"><span itemprop="name">AcWing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">200010</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> p[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        cin &gt;&gt; c &gt;&gt; x;</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">&#x27;L&#x27;</span>) p[x] = --l;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;R&#x27;</span>) p[x] = ++r;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; <span class="built_in">min</span>(r - p[x], p[x] - l) &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
