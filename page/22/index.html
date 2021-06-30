@@ -154,7 +154,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">246</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -167,7 +167,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -196,6 +196,164 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-684-redundant-connection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LeetCode/leetcode-684-redundant-connection/" class="post-title-link" itemprop="url">LeetCode 684. Redundant Connection</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-14 23:16:29" itemprop="dateCreated datePublished" datetime="2021-01-14T23:16:29+08:00">2021-01-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-18 00:10:09" itemprop="dateModified" datetime="2021-01-18T00:10:09+08:00">2021-01-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">findRedundantConnection</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = edges.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">size</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">auto</span> find = [&amp;](<span class="keyword">int</span> i) &#123;</span><br><span class="line">            <span class="keyword">int</span> j = i;</span><br><span class="line">            <span class="keyword">while</span> (i != f[i]) i = f[i];</span><br><span class="line">            <span class="keyword">while</span> (j != i) &#123;</span><br><span class="line">                <span class="keyword">int</span> next = f[j];</span><br><span class="line">                f[j] = i;</span><br><span class="line">                j = next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> j;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; edge : edges) &#123;</span><br><span class="line">            <span class="keyword">int</span> u = edge[<span class="number">0</span>], v = edge[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (!f[u]) f[u] = u;</span><br><span class="line">            <span class="keyword">if</span> (!f[v]) f[v] = v;</span><br><span class="line">            <span class="keyword">int</span> uf = <span class="built_in">find</span>(u), vf = <span class="built_in">find</span>(v);</span><br><span class="line">            <span class="keyword">if</span> (uf == vf) <span class="keyword">return</span> edge;</span><br><span class="line">            <span class="keyword">if</span> (size[vf] &gt; size[uf])</span><br><span class="line">                <span class="built_in">swap</span>(vf, uf);</span><br><span class="line">            f[vf] = uf;</span><br><span class="line">            size[uf] += size[vf];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1203-sort-items-by-groups-respecting-dependencies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LeetCode/leetcode-1203-sort-items-by-groups-respecting-dependencies/" class="post-title-link" itemprop="url">LeetCode 1203. Sort Items by Groups Respecting Dependencies</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-13 02:37:38" itemprop="dateCreated datePublished" datetime="2021-01-13T02:37:38+08:00">2021-01-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-18 00:58:49" itemprop="dateModified" datetime="2021-01-18T00:58:49+08:00">2021-01-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortItems</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, vector&lt;<span class="keyword">int</span>&gt;&amp; group, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; beforeItems)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">groupItem</span>(n + m);</span><br><span class="line">        <span class="keyword">int</span> leftId = m;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (group[i] == <span class="number">-1</span>)</span><br><span class="line">                group[i] = leftId++;</span><br><span class="line">            groupItem[group[i]].<span class="built_in">emplace_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">groupGraph</span>(n + m);</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">itemGraph</span>(n);</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">groupDegree</span><span class="params">(n + m, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">itemDegree</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> curGroupId = group[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; item: beforeItems[i]) &#123;</span><br><span class="line">                <span class="keyword">int</span> beforeGroupId = group[item];</span><br><span class="line">                <span class="keyword">if</span> (beforeGroupId == curGroupId) &#123;</span><br><span class="line">                    ++itemDegree[i];</span><br><span class="line">                    itemGraph[item].<span class="built_in">emplace_back</span>(i);   </span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    ++groupDegree[curGroupId];</span><br><span class="line">                    groupGraph[beforeGroupId].<span class="built_in">emplace_back</span>(curGroupId);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; id;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n + m; ++i)</span><br><span class="line">            id.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; groupTopSort = <span class="built_in">topSort</span>(groupDegree, groupGraph, id); </span><br><span class="line">        <span class="keyword">if</span> (groupTopSort.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> vector&lt;<span class="keyword">int</span>&gt;&#123;&#125;;</span><br><span class="line"></span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; curGroupId: groupTopSort) &#123;</span><br><span class="line">            <span class="keyword">int</span> size = groupItem[curGroupId].<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">if</span> (size == <span class="number">0</span>) <span class="keyword">continue</span>;    </span><br><span class="line">            vector&lt;<span class="keyword">int</span>&gt; itemTopSort = <span class="built_in">topSort</span>(itemDegree, itemGraph, groupItem[curGroupId]);</span><br><span class="line">            <span class="keyword">if</span> (itemTopSort.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> vector&lt;<span class="keyword">int</span>&gt;&#123;&#125;;</span><br><span class="line">            ans.<span class="built_in">insert</span>(ans.<span class="built_in">end</span>(), itemTopSort.<span class="built_in">begin</span>(), itemTopSort.<span class="built_in">end</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">topSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; indeg, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, vector&lt;<span class="keyword">int</span>&gt;&amp; items)</span> </span>&#123;</span><br><span class="line">        queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; item: items)</span><br><span class="line">            <span class="keyword">if</span> (indeg[item] == <span class="number">0</span>)</span><br><span class="line">                q.<span class="built_in">push</span>(item);</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">int</span> u = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">            ans.<span class="built_in">emplace_back</span>(u);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; v: graph[u])</span><br><span class="line">                <span class="keyword">if</span> (--indeg[v] == <span class="number">0</span>)</span><br><span class="line">                    q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans.<span class="built_in">size</span>() == items.<span class="built_in">size</span>() ? ans : vector&lt;<span class="keyword">int</span>&gt;&#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -820,164 +978,6 @@
           <div class="tabs" id="leetcode-399-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-399-solution-1">BFS</a></li><li class="tab"><a href="#leetcode-399-solution-2">Floyd</a></li><li class="tab"><a href="#leetcode-399-solution-3">Union Find</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-399-solution-1"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">double</span>&gt; <span class="title">calcEquation</span><span class="params">(vector&lt;vector&lt;string&gt;&gt;&amp; equations, vector&lt;<span class="keyword">double</span>&gt;&amp; values, vector&lt;vector&lt;string&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> varCnt = <span class="number">0</span>;</span><br><span class="line">        unordered_map&lt;string, <span class="keyword">int</span>&gt; variables;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = equations.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(equations[i][<span class="number">0</span>]) == variables.<span class="built_in">end</span>())</span><br><span class="line">                variables[equations[i][<span class="number">0</span>]] = varCnt++;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(equations[i][<span class="number">1</span>]) == variables.<span class="built_in">end</span>())</span><br><span class="line">                variables[equations[i][<span class="number">1</span>]] = varCnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">double</span>&gt;&gt;&gt; <span class="built_in">edges</span>(varCnt);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> leftVar = variables[equations[i][<span class="number">0</span>]], rightVar = variables[equations[i][<span class="number">1</span>]];</span><br><span class="line">            edges[leftVar].<span class="built_in">emplace_back</span>(rightVar, values[i]);</span><br><span class="line">            edges[rightVar].<span class="built_in">emplace_back</span>(leftVar, <span class="number">1.0</span> / values[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="keyword">double</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; q : queries) &#123;</span><br><span class="line">            <span class="keyword">double</span> result = <span class="number">-1.0</span>;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(q[<span class="number">0</span>]) != variables.<span class="built_in">end</span>() &amp; variables.<span class="built_in">find</span>(q[<span class="number">1</span>]) != variables.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                <span class="keyword">int</span> leftIndex = variables[q[<span class="number">0</span>]], rightIndex = variables[q[<span class="number">1</span>]];</span><br><span class="line">                <span class="keyword">if</span> (leftIndex == rightIndex)</span><br><span class="line">                    result = <span class="number">1.0</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    queue&lt;<span class="keyword">int</span>&gt; points;</span><br><span class="line">                    points.<span class="built_in">push</span>(leftIndex);</span><br><span class="line">                    <span class="function">vector&lt;<span class="keyword">double</span>&gt; <span class="title">ratios</span><span class="params">(varCnt, <span class="number">-1</span>)</span></span>;</span><br><span class="line">                    ratios[leftIndex] = <span class="number">1.0</span>;</span><br><span class="line">                    <span class="function">vector&lt;<span class="keyword">bool</span>&gt; <span class="title">visited</span><span class="params">(varCnt, <span class="literal">false</span>)</span></span>;</span><br><span class="line">                    <span class="keyword">while</span> (!points.<span class="built_in">empty</span>() &amp;&amp; ratios[rightIndex] == <span class="number">-1</span>) &#123;</span><br><span class="line">                        leftIndex = points.<span class="built_in">front</span>(); points.<span class="built_in">pop</span>();</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> [nextIndex, val] : edges[leftIndex]) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (ratios[nextIndex] == <span class="number">-1</span>) &#123;</span><br><span class="line">                                ratios[nextIndex] = ratios[leftIndex] * val;</span><br><span class="line">                                points.<span class="built_in">push</span>(nextIndex);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    result = ratios[rightIndex];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(result);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-399-solution-2"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">double</span>&gt; <span class="title">calcEquation</span><span class="params">(vector&lt;vector&lt;string&gt;&gt;&amp; equations, vector&lt;<span class="keyword">double</span>&gt;&amp; values, vector&lt;vector&lt;string&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> varCnt = <span class="number">0</span>;</span><br><span class="line">        unordered_map&lt;string, <span class="keyword">int</span>&gt; variables;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = equations.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(equations[i][<span class="number">0</span>]) == variables.<span class="built_in">end</span>())</span><br><span class="line">                variables[equations[i][<span class="number">0</span>]] = varCnt++;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(equations[i][<span class="number">1</span>]) == variables.<span class="built_in">end</span>())</span><br><span class="line">                variables[equations[i][<span class="number">1</span>]] = varCnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">double</span>&gt;&gt; <span class="built_in">graph</span>(varCnt, vector&lt;<span class="keyword">double</span>&gt;(varCnt, <span class="number">-1.0</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> leftVar = variables[equations[i][<span class="number">0</span>]], rightVar = variables[equations[i][<span class="number">1</span>]];</span><br><span class="line">            graph[leftVar][rightVar] = values[i];</span><br><span class="line">            graph[rightVar][leftVar] = <span class="number">1.0</span> / values[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; varCnt; ++k)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; varCnt; ++i)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; varCnt; ++j)</span><br><span class="line">                    <span class="keyword">if</span> (graph[i][k] != <span class="number">-1</span> &amp;&amp; graph[k][j] != <span class="number">-1</span>)</span><br><span class="line">                        graph[i][j] = graph[i][k] * graph[k][j];</span><br><span class="line">        vector&lt;<span class="keyword">double</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; q : queries) &#123;</span><br><span class="line">            <span class="keyword">double</span> result = <span class="number">-1.0</span>;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(q[<span class="number">0</span>]) != variables.<span class="built_in">end</span>() &amp;&amp; variables.<span class="built_in">find</span>(q[<span class="number">1</span>]) != variables.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                <span class="keyword">int</span> leftIndex = variables[q[<span class="number">0</span>]], rightIndex = variables[q[<span class="number">1</span>]];</span><br><span class="line">                <span class="keyword">if</span> (graph[leftIndex][rightIndex] != <span class="number">-1</span>)</span><br><span class="line">                    result = graph[leftIndex][rightIndex];</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(result);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-399-solution-3"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">double</span>&gt; <span class="title">calcEquation</span><span class="params">(vector&lt;vector&lt;string&gt;&gt;&amp; equations, vector&lt;<span class="keyword">double</span>&gt;&amp; values, vector&lt;vector&lt;string&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> varCnt = <span class="number">0</span>;</span><br><span class="line">        unordered_map&lt;string, <span class="keyword">int</span>&gt; variables;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> n = equations.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(equations[i][<span class="number">0</span>]) == variables.<span class="built_in">end</span>())</span><br><span class="line">                variables[equations[i][<span class="number">0</span>]] = varCnt++;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(equations[i][<span class="number">1</span>]) == variables.<span class="built_in">end</span>())</span><br><span class="line">                variables[equations[i][<span class="number">1</span>]] = varCnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(varCnt)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">double</span>&gt; <span class="title">w</span><span class="params">(varCnt, <span class="number">1.0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; varCnt; ++i)</span><br><span class="line">            f[i] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> leftVar = variables[equations[i][<span class="number">0</span>]], rightVar = variables[equations[i][<span class="number">1</span>]];</span><br><span class="line">            <span class="built_in">merge</span>(f, w, leftVar, rightVar, values[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="keyword">double</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; q : queries) &#123;</span><br><span class="line">            <span class="keyword">double</span> result = <span class="number">-1.0</span>;</span><br><span class="line">            <span class="keyword">if</span> (variables.<span class="built_in">find</span>(q[<span class="number">0</span>]) != variables.<span class="built_in">end</span>() &amp;&amp; variables.<span class="built_in">find</span>(q[<span class="number">1</span>]) != variables.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                <span class="keyword">int</span> leftIndex = variables[q[<span class="number">0</span>]], rightIndex = variables[q[<span class="number">1</span>]];</span><br><span class="line">                <span class="keyword">int</span> fl = <span class="built_in">findf</span>(f, w, leftIndex), fr = <span class="built_in">findf</span>(f, w, rightIndex);</span><br><span class="line">                <span class="keyword">if</span> (fl == fr)</span><br><span class="line">                    result = w[leftIndex] / w[rightIndex];</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(result);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findf</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; f, vector&lt;<span class="keyword">double</span>&gt;&amp; w, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x != f[x]) &#123;</span><br><span class="line">            <span class="keyword">int</span> father = <span class="built_in">findf</span>(f, w, f[x]);</span><br><span class="line">            w[x] = w[x] * w[f[x]];</span><br><span class="line">            f[x] = father;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[x];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; f, vector&lt;<span class="keyword">double</span>&gt;&amp; w, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">double</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> fx = <span class="built_in">findf</span>(f, w, x);</span><br><span class="line">        <span class="keyword">int</span> fy = <span class="built_in">findf</span>(f, w, y);</span><br><span class="line">        f[fx] = fy;</span><br><span class="line">        w[fx] = val * w[y] / w[x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>
 
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-830-positions-of-large-groups/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/LeetCode/leetcode-830-positions-of-large-groups/" class="post-title-link" itemprop="url">LeetCode 830. Positions of Large Groups</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-05 21:08:02" itemprop="dateCreated datePublished" datetime="2021-01-05T21:08:02+08:00">2021-01-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-18 00:10:09" itemprop="dateModified" datetime="2021-01-18T00:10:09+08:00">2021-01-18</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">largeGroupPositions</span>(string s) &#123;</span><br><span class="line">        <span class="keyword">char</span> prev = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">-1</span>, i = <span class="number">0</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c != prev) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i - start &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(vector&lt;<span class="keyword">int</span>&gt;&#123;start, i - <span class="number">1</span>&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">                prev = c;</span><br><span class="line">                start = i;</span><br><span class="line">            &#125;</span><br><span class="line">            ++i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i - start &gt;= <span class="number">3</span>)</span><br><span class="line">            ans.<span class="built_in">push_back</span>(vector&lt;<span class="keyword">int</span>&gt;&#123;start, i - <span class="number">1</span>&#125;);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-509-fibonacci-number/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/LeetCode/leetcode-509-fibonacci-number/" class="post-title-link" itemprop="url">LeetCode 509. Fibonacci Number</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-01-05 21:07:13" itemprop="dateCreated datePublished" datetime="2021-01-05T21:07:13+08:00">2021-01-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-18 00:10:09" itemprop="dateModified" datetime="2021-01-18T00:10:09+08:00">2021-01-18</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">0</span>, q = <span class="number">0</span>, r = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            p = q; </span><br><span class="line">            q = r; </span><br><span class="line">            r = p + q;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
 
