@@ -155,7 +155,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">258</span>
+          <span class="site-state-item-count">259</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -198,6 +198,85 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/LeetCode/leetcode-1896-minimum-cost-to-change-the-final-value-of-expression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shawn">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shawn's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LeetCode/leetcode-1896-minimum-cost-to-change-the-final-value-of-expression/" class="post-title-link" itemprop="url">LeetCode 1896. Minimum Cost to Change the Final Value of Expression</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-13 23:23:56" itemprop="dateCreated datePublished" datetime="2021-06-13T23:23:56+08:00">2021-06-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-14 00:32:59" itemprop="dateModified" datetime="2021-06-14T00:32:59+08:00">2021-06-14</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minOperationsToFlip</span><span class="params">(string expression)</span> </span>&#123;</span><br><span class="line">        vector&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; stack_num;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; stack_op;</span><br><span class="line">        <span class="keyword">auto</span> op_and = [](<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2) -&gt; pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="built_in">min</span>(&#123;x1 + x2, x1 + y2, x2 + y1&#125;), y1 + y2&#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">auto</span> op_or = [](<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2) -&gt; pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;x1 + x2, <span class="built_in">min</span>(&#123;x1 + y2, x2 + y1, x2 + y1, y1 + y2&#125;)&#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">auto</span> calc = [&amp;]() &#123;</span><br><span class="line">            <span class="keyword">if</span> (stack_num.<span class="built_in">size</span>() &gt;= <span class="number">2</span> &amp;&amp; (stack_op.<span class="built_in">back</span>() == <span class="string">&#x27;|&#x27;</span> || stack_op.<span class="built_in">back</span>() == <span class="string">&#x27;&amp;&#x27;</span>)) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [x1, y1] = stack_num.<span class="built_in">back</span>(); stack_num.<span class="built_in">pop_back</span>();</span><br><span class="line">                <span class="keyword">auto</span> [x2, y2] = stack_num.<span class="built_in">back</span>(); stack_num.<span class="built_in">pop_back</span>();</span><br><span class="line">                <span class="keyword">auto</span> [x_and, y_and] = <span class="built_in">op_and</span>(x1, y1, x2, y2);</span><br><span class="line">                <span class="keyword">auto</span> [x_or, y_or] = <span class="built_in">op_or</span>(x1, y1, x2, y2);</span><br><span class="line">                <span class="keyword">if</span> (stack_op.<span class="built_in">back</span>() == <span class="string">&#x27;&amp;&#x27;</span>) &#123;</span><br><span class="line">                    stack_num.<span class="built_in">emplace_back</span>(<span class="built_in">min</span>(x_and, x_or + <span class="number">1</span>), <span class="built_in">min</span>(y_and, y_or + <span class="number">1</span>));</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    stack_num.<span class="built_in">emplace_back</span>(<span class="built_in">min</span>(x_or, x_and + <span class="number">1</span>), <span class="built_in">min</span>(y_or, y_and + <span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                stack_op.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : expression) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">&#x27;(&#x27;</span> || c == <span class="string">&#x27;|&#x27;</span> || c == <span class="string">&#x27;&amp;&#x27;</span>) &#123;</span><br><span class="line">                stack_op.<span class="built_in">push_back</span>(c);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">                stack_num.<span class="built_in">emplace_back</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">                <span class="built_in">calc</span>();</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">&#x27;1&#x27;</span>) &#123;</span><br><span class="line">                stack_num.<span class="built_in">emplace_back</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">                <span class="built_in">calc</span>();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">assert</span>(c == <span class="string">&#x27;)&#x27;</span>);</span><br><span class="line">                stack_op.<span class="built_in">pop_back</span>();</span><br><span class="line">                <span class="built_in">calc</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(stack_num[<span class="number">0</span>].first, stack_num[<span class="number">0</span>].second);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -839,79 +918,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1000000</span>;</span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;k);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">        <span class="keyword">int</span> ans = n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n;)</span><br><span class="line">                <span class="keyword">if</span> (a[j] != i) &#123;</span><br><span class="line">                    ++cnt;</span><br><span class="line">                    j += k;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    ++j;</span><br><span class="line">                &#125;</span><br><span class="line">            ans = <span class="built_in">min</span>(ans, cnt);</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/AcWing/acwing-3660-%E6%9C%80%E7%9F%AD%E6%97%B6%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Shawn">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shawn's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/AcWing/acwing-3660-%E6%9C%80%E7%9F%AD%E6%97%B6%E9%97%B4/" class="post-title-link" itemprop="url">AcWing 3660. 最短时间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-06-12 22:11:30 / Modified: 22:16:28" itemprop="dateCreated datePublished" datetime="2021-06-12T22:11:30+08:00">2021-06-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AcWing/" itemprop="url" rel="index"><span itemprop="name">AcWing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="keyword">int</span> n, m, r, c;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; m &gt;&gt; r &gt;&gt; c;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">max</span>(&#123;r + c - <span class="number">2</span>, n - r + c - <span class="number">1</span>, r + m - c - <span class="number">1</span>, n - r + m - c&#125;) &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
