@@ -2164,7 +2164,7 @@ pre code {
   font-size: 0.875em;
   font-weight: bold;
   line-height: 1;
-  margin: -20px auto 15px;
+  margin: -15px auto 15px;
   text-align: center;
 }
 .post-body iframe,
@@ -3073,7 +3073,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #13ff85;
+  background: #69712a;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
