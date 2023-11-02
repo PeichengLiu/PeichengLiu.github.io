@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LeetCode 1210. Minimum Moves to Reach Target with Rotations</title>
+    <url>/LeetCode/leetcode-1210-minimum-moves-to-reach-target-with-rotations/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">int</span> DIRS[<span class="number">3</span>][<span class="number">3</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>&#125;&#125;; <span class="comment">// downward, rightward, rotate</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumMoves</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">bool</span> st[n][n][<span class="number">2</span>];</span><br><span class="line">        <span class="built_in">memset</span>(st, <span class="number">0</span>, <span class="built_in">sizeof</span>(st));</span><br><span class="line">        st[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        vector&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; q;</span><br><span class="line">        q.<span class="built_in">emplace_back</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> step = <span class="number">1</span>; !q.<span class="built_in">empty</span>(); ++step) &#123;</span><br><span class="line">            vector&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; nxt;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span> &amp;[X, Y, S] : q) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span> &amp;d : DIRS) &#123;</span><br><span class="line">                    <span class="type">int</span> x = X + d[<span class="number">0</span>], y = Y + d[<span class="number">1</span>], s = S ^ d[<span class="number">2</span>]; <span class="comment">// tail</span></span><br><span class="line">                    <span class="type">int</span> x2 = x + s, y2 = y + (s ^ <span class="number">1</span>); <span class="comment">// head</span></span><br><span class="line">                    <span class="keyword">if</span> (x2 &lt; n &amp;&amp; y2 &lt; n &amp;&amp; !st[x][y][s] &amp;&amp; grid[x][y] == <span class="number">0</span> &amp;&amp; grid[x2][y2] == <span class="number">0</span></span><br><span class="line">                        &amp;&amp; (d[<span class="number">2</span>] == <span class="number">0</span> || grid[x + <span class="number">1</span>][y + <span class="number">1</span>] == <span class="number">0</span>)) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (x == n - <span class="number">1</span> &amp;&amp; y == n - <span class="number">2</span>) <span class="keyword">return</span> step;</span><br><span class="line">                            st[x][y][s] = <span class="number">1</span>;</span><br><span class="line">                            nxt.<span class="built_in">emplace_back</span>(x, y, s);</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            q = <span class="built_in">move</span>(nxt);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Breadth-first Search</tag>
+        <tag>Array</tag>
+        <tag>Martix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 122. Best Time to Buy and Sell Stock II</title>
+    <url>/LeetCode/leetcode-122-best-time-to-buy-and-sell-stock-ii/</url>
+    <content><![CDATA[<div class="tabs" id="leetcode-122-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-122-solution-1">Greedy</a></li><li class="tab"><a href="#leetcode-122-solution-2">DP</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-122-solution-1"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = prices.<span class="built_in">size</span>() - <span class="number">1</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) </span><br><span class="line">            ans += <span class="built_in">max</span>(<span class="number">0</span>, prices[i + <span class="number">1</span>] - prices[i]);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-122-solution-2"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> cash = <span class="number">0</span>, hold = -prices[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            cash = <span class="built_in">max</span>(cash, hold + prices[i]);</span><br><span class="line">            hold = <span class="built_in">max</span>(hold, cash - prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cash;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Array</tag>
+        <tag>Greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 123. Best Time to Buy and Sell Stock III</title>
+    <url>/LeetCode/leetcode-123-best-time-to-buy-and-sell-stock-iii/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = prices.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> buy1 = -prices[<span class="number">0</span>], sell1 = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> buy2 = -prices[<span class="number">0</span>], sell2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            buy1 = <span class="built_in">max</span>(buy1, -prices[i]);</span><br><span class="line">            sell1 = <span class="built_in">max</span>(sell1, buy1 + prices[i]);</span><br><span class="line">            buy2 = <span class="built_in">max</span>(buy2, sell1 - prices[i]);</span><br><span class="line">            sell2 = <span class="built_in">max</span>(sell2, buy2 + prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sell2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 1232. Check If It Is a Straight Line</title>
+    <url>/LeetCode/leetcode-1232-check-if-it-is-a-straight-line/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">checkStraightLine</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; coordinates)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = coordinates.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (coordinates[<span class="number">1</span>][<span class="number">0</span>] == coordinates[<span class="number">0</span>][<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="type">int</span> x = coordinates[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; ++i)</span><br><span class="line">                <span class="keyword">if</span> (coordinates[i][<span class="number">0</span>] != x)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">double</span> k = (coordinates[<span class="number">1</span>][<span class="number">1</span>] - coordinates[<span class="number">0</span>][<span class="number">1</span>]) / (<span class="number">1.0</span> * coordinates[<span class="number">1</span>][<span class="number">0</span>] - coordinates[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">            <span class="type">double</span> b = coordinates[<span class="number">0</span>][<span class="number">1</span>] - k * coordinates[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; ++i)</span><br><span class="line">                <span class="keyword">if</span> ((k * coordinates[i][<span class="number">0</span>] + b) != coordinates[i][<span class="number">1</span>])</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Array</tag>
+        <tag>Geometry</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 1894. Find the Student that Will Replace the Chalk</title>
+    <url>/LeetCode/leetcode-1894-find-the-student-that-will-replace-the-chalk/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">chalkReplacer</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; chalk, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> c : chalk) s += c;</span><br><span class="line">        <span class="type">int</span> t = k % s, i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (t &gt;= chalk[i]) t -= chalk[i++];</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Array</tag>
+        <tag>Greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 1895. Largest Magic Square</title>
+    <url>/LeetCode/leetcode-1895-largest-magic-square/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">using</span> LL = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; g, <span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c, <span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">        LL sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = a; i &lt;= c; ++i) &#123;</span><br><span class="line">            LL s = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = b; j &lt;= d; ++j) s += g[i][j];</span><br><span class="line">            <span class="keyword">if</span> (sum &amp;&amp; sum != s) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            sum = s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = b; i &lt;= d; ++i) &#123;</span><br><span class="line">            LL s = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = a; j &lt;= c; ++j) s += g[j][i];</span><br><span class="line">            <span class="keyword">if</span> (sum != s) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        LL s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = a, j = b; i &lt;= c; ++i, ++j)</span><br><span class="line">            s += g[i][j];</span><br><span class="line">        <span class="keyword">if</span> (s != sum) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = a, j = d; i &lt;= c; ++i, --j)</span><br><span class="line">            s+= g[i][j];</span><br><span class="line">        <span class="keyword">return</span> s == sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">largestMagicSquare</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; g)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = g.<span class="built_in">size</span>(), m = g[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="built_in">min</span>(n, m); k &gt;= <span class="number">2</span>; --k) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span> ; i + k - <span class="number">1</span> &lt; n; ++i) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j + k - <span class="number">1</span> &lt; m; ++j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(g, i, j, i + k - <span class="number">1</span>, j + k - <span class="number">1</span>))</span><br><span class="line">                        <span class="keyword">return</span> k;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AcWing 103. 电影</title>
     <url>/AcWing/acwing-103-%E7%94%B5%E5%BD%B1/</url>
     <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, m, k, tot, a[N], b[N], c[N], cnt[<span class="number">3</span> * N], langs[<span class="number">3</span> * N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">lower_bound</span>(langs + <span class="number">1</span>, langs + <span class="number">1</span> + k, x) - langs;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]), langs[++tot] = a[i];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;b[i]), langs[++tot] = b[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;c[i]), langs[++tot] = c[i];</span><br><span class="line">    <span class="built_in">sort</span>(langs + <span class="number">1</span>, langs + <span class="number">1</span> + tot);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= tot; ++i) &#123;</span><br><span class="line">        langs[++k] = langs[i];</span><br><span class="line">        <span class="keyword">while</span> (i &lt; tot &amp;&amp; langs[i + <span class="number">1</span>] == langs[i]) ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) ++cnt[<span class="built_in">find</span>(a[i])];</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>, m1 = <span class="number">0</span>, m2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> v1 = cnt[<span class="built_in">find</span>(b[i])], v2 = cnt[<span class="built_in">find</span>(c[i])];</span><br><span class="line">        <span class="keyword">if</span> (v1 &gt; m1 || (v1 == m1 &amp;&amp; v2 &gt; m2)) &#123;</span><br><span class="line">            ans = i, m1 = v1, m2 = v2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans ? ans : <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
@@ -452,8 +527,8 @@
         <category>CodeChef</category>
       </categories>
       <tags>
-        <tag>Array</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Array</tag>
         <tag>Graph</tag>
         <tag>Heap (Priority Queue)</tag>
         <tag>Matrix</tag>
@@ -528,8 +603,8 @@
         <category>CodeForces</category>
       </categories>
       <tags>
-        <tag>Union Find</tag>
         <tag>Greedy</tag>
+        <tag>Union Find</tag>
         <tag>Graph</tag>
         <tag>Sorting</tag>
       </tags>
@@ -674,8 +749,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
         <tag>Array</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -849,8 +924,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -875,8 +950,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -900,8 +975,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -913,8 +988,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Union Find</tag>
         <tag>Array</tag>
+        <tag>Union Find</tag>
       </tags>
   </entry>
   <entry>
@@ -951,59 +1026,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Array</tag>
         <tag>Dynamic Programming</tag>
-        <tag>Array</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 1210. Minimum Moves to Reach Target with Rotations</title>
-    <url>/LeetCode/leetcode-1210-minimum-moves-to-reach-target-with-rotations/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">int</span> DIRS[<span class="number">3</span>][<span class="number">3</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>&#125;&#125;; <span class="comment">// downward, rightward, rotate</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumMoves</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">bool</span> st[n][n][<span class="number">2</span>];</span><br><span class="line">        <span class="built_in">memset</span>(st, <span class="number">0</span>, <span class="built_in">sizeof</span>(st));</span><br><span class="line">        st[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        vector&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; q;</span><br><span class="line">        q.<span class="built_in">emplace_back</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> step = <span class="number">1</span>; !q.<span class="built_in">empty</span>(); ++step) &#123;</span><br><span class="line">            vector&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; nxt;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span> &amp;[X, Y, S] : q) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span> &amp;d : DIRS) &#123;</span><br><span class="line">                    <span class="type">int</span> x = X + d[<span class="number">0</span>], y = Y + d[<span class="number">1</span>], s = S ^ d[<span class="number">2</span>]; <span class="comment">// tail</span></span><br><span class="line">                    <span class="type">int</span> x2 = x + s, y2 = y + (s ^ <span class="number">1</span>); <span class="comment">// head</span></span><br><span class="line">                    <span class="keyword">if</span> (x2 &lt; n &amp;&amp; y2 &lt; n &amp;&amp; !st[x][y][s] &amp;&amp; grid[x][y] == <span class="number">0</span> &amp;&amp; grid[x2][y2] == <span class="number">0</span></span><br><span class="line">                        &amp;&amp; (d[<span class="number">2</span>] == <span class="number">0</span> || grid[x + <span class="number">1</span>][y + <span class="number">1</span>] == <span class="number">0</span>)) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (x == n - <span class="number">1</span> &amp;&amp; y == n - <span class="number">2</span>) <span class="keyword">return</span> step;</span><br><span class="line">                            st[x][y][s] = <span class="number">1</span>;</span><br><span class="line">                            nxt.<span class="built_in">emplace_back</span>(x, y, s);</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            q = <span class="built_in">move</span>(nxt);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Array</tag>
-        <tag>Breadth-first Search</tag>
-        <tag>Martix</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 122. Best Time to Buy and Sell Stock II</title>
-    <url>/LeetCode/leetcode-122-best-time-to-buy-and-sell-stock-ii/</url>
-    <content><![CDATA[<div class="tabs" id="leetcode-122-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-122-solution-1">Greedy</a></li><li class="tab"><a href="#leetcode-122-solution-2">DP</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-122-solution-1"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = prices.<span class="built_in">size</span>() - <span class="number">1</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) </span><br><span class="line">            ans += <span class="built_in">max</span>(<span class="number">0</span>, prices[i + <span class="number">1</span>] - prices[i]);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-122-solution-2"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> cash = <span class="number">0</span>, hold = -prices[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; prices.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            cash = <span class="built_in">max</span>(cash, hold + prices[i]);</span><br><span class="line">            hold = <span class="built_in">max</span>(hold, cash - prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cash;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Greedy</tag>
-        <tag>Array</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 123. Best Time to Buy and Sell Stock III</title>
-    <url>/LeetCode/leetcode-123-best-time-to-buy-and-sell-stock-iii/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = prices.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> buy1 = -prices[<span class="number">0</span>], sell1 = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> buy2 = -prices[<span class="number">0</span>], sell2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            buy1 = <span class="built_in">max</span>(buy1, -prices[i]);</span><br><span class="line">            sell1 = <span class="built_in">max</span>(sell1, buy1 + prices[i]);</span><br><span class="line">            buy2 = <span class="built_in">max</span>(buy2, sell1 - prices[i]);</span><br><span class="line">            sell2 = <span class="built_in">max</span>(sell2, buy2 + prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sell2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Dynamic Programming</tag>
-        <tag>Array</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 1232. Check If It Is a Straight Line</title>
-    <url>/LeetCode/leetcode-1232-check-if-it-is-a-straight-line/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">checkStraightLine</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; coordinates)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = coordinates.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (coordinates[<span class="number">1</span>][<span class="number">0</span>] == coordinates[<span class="number">0</span>][<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="type">int</span> x = coordinates[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; ++i)</span><br><span class="line">                <span class="keyword">if</span> (coordinates[i][<span class="number">0</span>] != x)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">double</span> k = (coordinates[<span class="number">1</span>][<span class="number">1</span>] - coordinates[<span class="number">0</span>][<span class="number">1</span>]) / (<span class="number">1.0</span> * coordinates[<span class="number">1</span>][<span class="number">0</span>] - coordinates[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">            <span class="type">double</span> b = coordinates[<span class="number">0</span>][<span class="number">1</span>] - k * coordinates[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; ++i)</span><br><span class="line">                <span class="keyword">if</span> ((k * coordinates[i][<span class="number">0</span>] + b) != coordinates[i][<span class="number">1</span>])</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Array</tag>
-        <tag>Math</tag>
-        <tag>Geometry</tag>
       </tags>
   </entry>
   <entry>
@@ -1015,8 +1039,8 @@
       </categories>
       <tags>
         <tag>Array</tag>
-        <tag>Sliding Window</tag>
         <tag>Math</tag>
+        <tag>Sliding Window</tag>
         <tag>Hash Table</tag>
       </tags>
   </entry>
@@ -1040,8 +1064,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Array</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Array</tag>
         <tag>Matrix</tag>
       </tags>
   </entry>
@@ -1091,8 +1115,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Union Find</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Union Find</tag>
         <tag>Depth-first Search</tag>
       </tags>
   </entry>
@@ -1152,8 +1176,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Array</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Array</tag>
         <tag>Graph</tag>
         <tag>Heap (Priority Queue)</tag>
         <tag>Matrix</tag>
@@ -1197,8 +1221,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Sliding Window</tag>
       </tags>
   </entry>
@@ -1283,8 +1307,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -1295,8 +1319,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
         <tag>Array</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -1307,8 +1331,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
         <tag>Array</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -1525,8 +1549,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Greedy</tag>
         <tag>Array</tag>
+        <tag>Greedy</tag>
       </tags>
   </entry>
   <entry>
@@ -1537,8 +1561,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Greedy</tag>
         <tag>Array</tag>
+        <tag>Greedy</tag>
       </tags>
   </entry>
   <entry>
@@ -1571,8 +1595,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Greedy</tag>
         <tag>Array</tag>
+        <tag>Greedy</tag>
         <tag>Sorting</tag>
       </tags>
   </entry>
@@ -1694,30 +1718,6 @@
         <tag>Array</tag>
         <tag>Prefix Sum</tag>
         <tag>Hash Table</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 1894. Find the Student that Will Replace the Chalk</title>
-    <url>/LeetCode/leetcode-1894-find-the-student-that-will-replace-the-chalk/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">chalkReplacer</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; chalk, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> c : chalk) s += c;</span><br><span class="line">        <span class="type">int</span> t = k % s, i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (t &gt;= chalk[i]) t -= chalk[i++];</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Greedy</tag>
-        <tag>Array</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 1895. Largest Magic Square</title>
-    <url>/LeetCode/leetcode-1895-largest-magic-square/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">using</span> LL = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; g, <span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c, <span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">        LL sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = a; i &lt;= c; ++i) &#123;</span><br><span class="line">            LL s = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = b; j &lt;= d; ++j) s += g[i][j];</span><br><span class="line">            <span class="keyword">if</span> (sum &amp;&amp; sum != s) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            sum = s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = b; i &lt;= d; ++i) &#123;</span><br><span class="line">            LL s = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = a; j &lt;= c; ++j) s += g[j][i];</span><br><span class="line">            <span class="keyword">if</span> (sum != s) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        LL s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = a, j = b; i &lt;= c; ++i, ++j)</span><br><span class="line">            s += g[i][j];</span><br><span class="line">        <span class="keyword">if</span> (s != sum) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = a, j = d; i &lt;= c; ++i, --j)</span><br><span class="line">            s+= g[i][j];</span><br><span class="line">        <span class="keyword">return</span> s == sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">largestMagicSquare</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; g)</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> n = g.<span class="built_in">size</span>(), m = g[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="built_in">min</span>(n, m); k &gt;= <span class="number">2</span>; --k) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span> ; i + k - <span class="number">1</span> &lt; n; ++i) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j + k - <span class="number">1</span> &lt; m; ++j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">check</span>(g, i, j, i + k - <span class="number">1</span>, j + k - <span class="number">1</span>))</span><br><span class="line">                        <span class="keyword">return</span> k;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Dynamic Programming</tag>
-        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -1860,9 +1860,9 @@
       </categories>
       <tags>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
         <tag>Graph</tag>
         <tag>Tree</tag>
-        <tag>Math</tag>
         <tag>Topological Sort</tag>
         <tag>Combinatorics</tag>
       </tags>
@@ -1899,8 +1899,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Greedy</tag>
         <tag>Array</tag>
+        <tag>Greedy</tag>
       </tags>
   </entry>
   <entry>
@@ -1912,8 +1912,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Depth-first Search</tag>
       </tags>
   </entry>
@@ -2182,6 +2182,20 @@
       </tags>
   </entry>
   <entry>
+    <title>LeetCode 2242. Maximum Score of a Node Sequence</title>
+    <url>/LeetCode/leetcode-2242-maximum-score-of-a-node-sequence/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumScore</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; scores, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = scores.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">g</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;e : edges) &#123;</span><br><span class="line">            g[e[<span class="number">0</span>]].<span class="built_in">emplace_back</span>(e[<span class="number">1</span>]);</span><br><span class="line">            g[e[<span class="number">1</span>]].<span class="built_in">emplace_back</span>(e[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="built_in">sort</span>(g[i].<span class="built_in">begin</span>(), g[i].<span class="built_in">end</span>(), [&amp;](<span class="type">int</span> x, <span class="type">int</span> y) &#123;</span><br><span class="line">                <span class="keyword">return</span> scores[x] &gt; scores[y];</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;e : edges) &#123;</span><br><span class="line">            <span class="type">int</span> x = e[<span class="number">0</span>], y = e[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> &amp;&amp; i &lt; g[x].<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (g[x][i] != y) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span> &amp;&amp; j &lt; g[y].<span class="built_in">size</span>(); ++j) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (g[y][j] != x &amp;&amp; g[x][i] != g[y][j]) &#123;</span><br><span class="line">                            ans = <span class="built_in">max</span>(ans, scores[g[x][i]] + scores[x] + scores[y] + scores[g[y][j]]);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Array</tag>
+        <tag>Graph</tag>
+        <tag>Sorting</tag>
+        <tag>Enumeration</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode 2246. Longest Path With Different Adjacent Characters</title>
     <url>/LeetCode/leetcode-2246-longest-path-with-different-adjacent-characters/</url>
     <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestPath</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; parent, string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = parent.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">g</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            g[parent[i]].<span class="built_in">emplace_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> u) &#123;</span><br><span class="line">            <span class="type">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> v : g[u]) &#123;</span><br><span class="line">                <span class="type">int</span> len = <span class="built_in">dfs</span>(v) + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (s[v] != s[u]) &#123;</span><br><span class="line">                    ans = <span class="built_in">max</span>(ans, maxLen + len);</span><br><span class="line">                    maxLen = <span class="built_in">max</span>(maxLen, len);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> maxLen;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
@@ -2198,20 +2212,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 2242. Maximum Score of a Node Sequence</title>
-    <url>/LeetCode/leetcode-2242-maximum-score-of-a-node-sequence/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumScore</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; scores, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = scores.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">g</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;e : edges) &#123;</span><br><span class="line">            g[e[<span class="number">0</span>]].<span class="built_in">emplace_back</span>(e[<span class="number">1</span>]);</span><br><span class="line">            g[e[<span class="number">1</span>]].<span class="built_in">emplace_back</span>(e[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="built_in">sort</span>(g[i].<span class="built_in">begin</span>(), g[i].<span class="built_in">end</span>(), [&amp;](<span class="type">int</span> x, <span class="type">int</span> y) &#123;</span><br><span class="line">                <span class="keyword">return</span> scores[x] &gt; scores[y];</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;e : edges) &#123;</span><br><span class="line">            <span class="type">int</span> x = e[<span class="number">0</span>], y = e[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span> &amp;&amp; i &lt; g[x].<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (g[x][i] != y) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span> &amp;&amp; j &lt; g[y].<span class="built_in">size</span>(); ++j) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (g[y][j] != x &amp;&amp; g[x][i] != g[y][j]) &#123;</span><br><span class="line">                            ans = <span class="built_in">max</span>(ans, scores[g[x][i]] + scores[x] + scores[y] + scores[g[y][j]]);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Array</tag>
-        <tag>Graph</tag>
-        <tag>Sorting</tag>
-        <tag>Enumeration</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode 2251. Number of Flowers in Full Bloom</title>
     <url>/LeetCode/leetcode-2251-number-of-flowers-in-full-bloom/</url>
     <content><![CDATA[<div class="tabs" id="leetcode-2251-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-2251-solution-1">Difference</a></li><li class="tab"><a href="#leetcode-2251-solution-2">Binary Search</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-2251-solution-1"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">fullBloomFlowers</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; flowers, vector&lt;<span class="type">int</span>&gt;&amp; persons)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; diff;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;f : flowers) ++diff[f[<span class="number">0</span>]], --diff[f[<span class="number">1</span>] + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> n = persons.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">id</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="built_in">iota</span>(id.<span class="built_in">begin</span>(), id.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">sort</span>(id.<span class="built_in">begin</span>(), id.<span class="built_in">end</span>(), [&amp;](<span class="type">int</span> i, <span class="type">int</span> j) &#123;</span><br><span class="line">            <span class="keyword">return</span> persons[i] &lt; persons[j];</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">auto</span> it = diff.<span class="built_in">begin</span>();</span><br><span class="line">        <span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i : id) &#123;</span><br><span class="line">            <span class="keyword">while</span> (it != diff.<span class="built_in">end</span>() &amp;&amp; it-&gt;first &lt;= persons[i])</span><br><span class="line">                s += it++-&gt;second;</span><br><span class="line">            ans[i] = s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-2251-solution-2"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">fullBloomFlowers</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; flowers, vector&lt;<span class="type">int</span>&gt;&amp; persons)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = flowers.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">s</span><span class="params">(n)</span>, <span class="title">e</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) s[i] = flowers[i][<span class="number">0</span>], e[i] = flowers[i][<span class="number">1</span>];</span><br><span class="line">        <span class="built_in">sort</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">sort</span>(e.<span class="built_in">begin</span>(), e.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> m = persons.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            ans[i] = (<span class="built_in">upper_bound</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>(), persons[i]) - s.<span class="built_in">begin</span>())</span><br><span class="line">                - (<span class="built_in">lower_bound</span>(e.<span class="built_in">begin</span>(), e.<span class="built_in">end</span>(), persons[i]) - e.<span class="built_in">begin</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>]]></content>
@@ -2219,8 +2219,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
         <tag>Array</tag>
+        <tag>Binary Search</tag>
         <tag>Sorting</tag>
         <tag>Ordered Set</tag>
         <tag>Prefix Sum</tag>
@@ -2235,9 +2235,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
-        <tag>Array</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Array</tag>
+        <tag>Binary Search</tag>
         <tag>Matrix</tag>
       </tags>
   </entry>
@@ -2299,8 +2299,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Matrix</tag>
       </tags>
   </entry>
@@ -2336,8 +2336,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -2373,8 +2373,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Array</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Array</tag>
         <tag>Graph</tag>
         <tag>Heap (Priority Queue)</tag>
         <tag>Matrix</tag>
@@ -2389,9 +2389,21 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Greedy</tag>
+        <tag>Dynamic Programming</tag>
         <tag>String</tag>
+        <tag>Memoization</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 2318. Number of Distinct Roll Sequences</title>
+    <url>/LeetCode/leetcode-2318-number-of-distinct-roll-sequences/</url>
+    <content><![CDATA[<div class="tabs" id="leetcode-2318-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-2318-solution-1">Memoization</a></li><li class="tab"><a href="#leetcode-2318-solution-2">DP (3 Dimensions)</a></li><li class="tab"><a href="#leetcode-2318-solution-3">DP (2 Dimensions)</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-2318-solution-1"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e4</span> + <span class="number">1</span>, MOD = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">int</span> f[N][<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line"><span class="type">bool</span> valid[<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distinctSequences</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">fill</span>(valid[<span class="number">0</span>], valid[<span class="number">6</span>] + <span class="number">7</span>, <span class="number">1</span>);</span><br><span class="line">        valid[<span class="number">2</span>][<span class="number">4</span>] = valid[<span class="number">2</span>][<span class="number">6</span>] = valid[<span class="number">3</span>][<span class="number">6</span>] = valid[<span class="number">4</span>][<span class="number">2</span>] = valid[<span class="number">4</span>][<span class="number">6</span>] = valid[<span class="number">6</span>][<span class="number">2</span>] = valid[<span class="number">6</span>][<span class="number">3</span>] = valid[<span class="number">6</span>][<span class="number">4</span>] = <span class="literal">false</span>;</span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> n, <span class="type">int</span> p1, <span class="type">int</span> p2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (f[n][p1][p2]) <span class="keyword">return</span> f[n][p1][p2];</span><br><span class="line">            <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">1</span>; x &lt;= <span class="number">6</span>; ++x)</span><br><span class="line">                <span class="keyword">if</span> (x != p1 &amp;&amp; x != p2 &amp;&amp; valid[p2][x])</span><br><span class="line">                    res = (res + <span class="built_in">dfs</span>(n - <span class="number">1</span>, p2, x)) % MOD;</span><br><span class="line">            f[n][p1][p2] = res;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(n, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-2318-solution-2"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Reference: https://leetcode.cn/problems/number-of-distinct-roll-sequences/solution/by-endlesscheng-tgkn/</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>, MX = <span class="number">1e4</span>;</span><br><span class="line"><span class="type">int</span> f[MX + <span class="number">1</span>][<span class="number">6</span>][<span class="number">6</span>];</span><br><span class="line"><span class="type">int</span> init = []() &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j)</span><br><span class="line">            <span class="keyword">if</span> (j != i &amp;&amp; <span class="built_in">gcd</span>(j + <span class="number">1</span>, i + <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">                f[<span class="number">2</span>][i][j] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; MX; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> last = <span class="number">0</span>; last &lt; <span class="number">6</span>; ++last)</span><br><span class="line">                <span class="keyword">if</span> (last != j &amp;&amp; <span class="built_in">gcd</span>(last + <span class="number">1</span>, j + <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> last2 = <span class="number">0</span>; last2 &lt; <span class="number">6</span>; ++last2)</span><br><span class="line">                        <span class="keyword">if</span> (last2 != j &amp;&amp; last2 != last)</span><br><span class="line">                            f[i + <span class="number">1</span>][j][last] = (f[i + <span class="number">1</span>][j][last] + f[i][last][last2]) % MOD;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distinctSequences</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">6</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j)</span><br><span class="line">                ans = (ans + f[n][i][j]) % MOD;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-2318-solution-3"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Reference: https://leetcode.cn/problems/number-of-distinct-roll-sequences/solution/by-endlesscheng-tgkn/</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>, MX = <span class="number">1e4</span>;</span><br><span class="line"><span class="type">int</span> f[MX + <span class="number">1</span>][<span class="number">6</span>];</span><br><span class="line"><span class="type">int</span> init = []() &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">        f[<span class="number">1</span>][i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= MX; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j) &#123;</span><br><span class="line">            <span class="type">long</span> s = <span class="number">0L</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">6</span>; ++k)</span><br><span class="line">                <span class="keyword">if</span> (k != j &amp;&amp; <span class="built_in">gcd</span>(k + <span class="number">1</span>, j + <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">                    s += f[i - <span class="number">1</span>][k] - f[i - <span class="number">2</span>][j];</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">3</span>) s += f[i - <span class="number">2</span>][j];</span><br><span class="line">            f[i][j] = s % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distinctSequences</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> ans = <span class="number">0L</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> v : f[n])</span><br><span class="line">            ans += v;</span><br><span class="line">        <span class="keyword">return</span> (ans % MOD + MOD) % MOD;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Dynamic Programming</tag>
         <tag>Memoization</tag>
       </tags>
   </entry>
@@ -2408,18 +2420,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 2318. Number of Distinct Roll Sequences</title>
-    <url>/LeetCode/leetcode-2318-number-of-distinct-roll-sequences/</url>
-    <content><![CDATA[<div class="tabs" id="leetcode-2318-solution"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-2318-solution-1">Memoization</a></li><li class="tab"><a href="#leetcode-2318-solution-2">DP (3 Dimensions)</a></li><li class="tab"><a href="#leetcode-2318-solution-3">DP (2 Dimensions)</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-2318-solution-1"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e4</span> + <span class="number">1</span>, MOD = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">int</span> f[N][<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line"><span class="type">bool</span> valid[<span class="number">7</span>][<span class="number">7</span>];</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distinctSequences</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">fill</span>(valid[<span class="number">0</span>], valid[<span class="number">6</span>] + <span class="number">7</span>, <span class="number">1</span>);</span><br><span class="line">        valid[<span class="number">2</span>][<span class="number">4</span>] = valid[<span class="number">2</span>][<span class="number">6</span>] = valid[<span class="number">3</span>][<span class="number">6</span>] = valid[<span class="number">4</span>][<span class="number">2</span>] = valid[<span class="number">4</span>][<span class="number">6</span>] = valid[<span class="number">6</span>][<span class="number">2</span>] = valid[<span class="number">6</span>][<span class="number">3</span>] = valid[<span class="number">6</span>][<span class="number">4</span>] = <span class="literal">false</span>;</span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> n, <span class="type">int</span> p1, <span class="type">int</span> p2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (f[n][p1][p2]) <span class="keyword">return</span> f[n][p1][p2];</span><br><span class="line">            <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">1</span>; x &lt;= <span class="number">6</span>; ++x)</span><br><span class="line">                <span class="keyword">if</span> (x != p1 &amp;&amp; x != p2 &amp;&amp; valid[p2][x])</span><br><span class="line">                    res = (res + <span class="built_in">dfs</span>(n - <span class="number">1</span>, p2, x)) % MOD;</span><br><span class="line">            f[n][p1][p2] = res;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(n, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-2318-solution-2"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Reference: https://leetcode.cn/problems/number-of-distinct-roll-sequences/solution/by-endlesscheng-tgkn/</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>, MX = <span class="number">1e4</span>;</span><br><span class="line"><span class="type">int</span> f[MX + <span class="number">1</span>][<span class="number">6</span>][<span class="number">6</span>];</span><br><span class="line"><span class="type">int</span> init = []() &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j)</span><br><span class="line">            <span class="keyword">if</span> (j != i &amp;&amp; <span class="built_in">gcd</span>(j + <span class="number">1</span>, i + <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">                f[<span class="number">2</span>][i][j] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; MX; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> last = <span class="number">0</span>; last &lt; <span class="number">6</span>; ++last)</span><br><span class="line">                <span class="keyword">if</span> (last != j &amp;&amp; <span class="built_in">gcd</span>(last + <span class="number">1</span>, j + <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> last2 = <span class="number">0</span>; last2 &lt; <span class="number">6</span>; ++last2)</span><br><span class="line">                        <span class="keyword">if</span> (last2 != j &amp;&amp; last2 != last)</span><br><span class="line">                            f[i + <span class="number">1</span>][j][last] = (f[i + <span class="number">1</span>][j][last] + f[i][last][last2]) % MOD;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distinctSequences</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">6</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j)</span><br><span class="line">                ans = (ans + f[n][i][j]) % MOD;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-2318-solution-3"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Reference: https://leetcode.cn/problems/number-of-distinct-roll-sequences/solution/by-endlesscheng-tgkn/</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>, MX = <span class="number">1e4</span>;</span><br><span class="line"><span class="type">int</span> f[MX + <span class="number">1</span>][<span class="number">6</span>];</span><br><span class="line"><span class="type">int</span> init = []() &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">        f[<span class="number">1</span>][i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= MX; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">6</span>; ++j) &#123;</span><br><span class="line">            <span class="type">long</span> s = <span class="number">0L</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">6</span>; ++k)</span><br><span class="line">                <span class="keyword">if</span> (k != j &amp;&amp; <span class="built_in">gcd</span>(k + <span class="number">1</span>, j + <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">                    s += f[i - <span class="number">1</span>][k] - f[i - <span class="number">2</span>][j];</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">3</span>) s += f[i - <span class="number">2</span>][j];</span><br><span class="line">            f[i][j] = s % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distinctSequences</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> ans = <span class="number">0L</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> v : f[n])</span><br><span class="line">            ans += v;</span><br><span class="line">        <span class="keyword">return</span> (ans % MOD + MOD) % MOD;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Dynamic Programming</tag>
-        <tag>Memoization</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode 2321. Maximum Score Of Spliced Array</title>
     <url>/LeetCode/leetcode-2321-maximum-score-of-spliced-array/</url>
     <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumsSplicedArray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums1.<span class="built_in">size</span>(), s1 = <span class="number">0</span>, s2 = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">d</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            s1 += nums1[i], s2 += nums2[i];</span><br><span class="line">            d[i + <span class="number">1</span>] = d[i] + nums1[i] - nums2[i]; <span class="comment">// 前缀和数组记录两数组间的差值。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="built_in">max</span>(s1, s2), mind = <span class="number">0</span>, maxd = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x : d) &#123;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, s2 + (x - mind));</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, s1 - (x - maxd));</span><br><span class="line">            mind = <span class="built_in">min</span>(mind, x);</span><br><span class="line">            maxd = <span class="built_in">max</span>(maxd, x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
@@ -2427,8 +2427,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -2576,8 +2576,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
         <tag>Array</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -2600,8 +2600,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Math</tag>
       </tags>
   </entry>
@@ -2828,9 +2828,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
-        <tag>Greedy</tag>
         <tag>Array</tag>
+        <tag>Greedy</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -2947,8 +2947,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Two Pointers</tag>
         <tag>Stack</tag>
       </tags>
@@ -3156,8 +3156,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Divide and Conquer</tag>
       </tags>
   </entry>
@@ -3238,8 +3238,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Greedy</tag>
         <tag>Array</tag>
+        <tag>Greedy</tag>
       </tags>
   </entry>
   <entry>
@@ -3264,8 +3264,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -3471,8 +3471,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Greedy</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -3544,8 +3544,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
         <tag>Array</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -3567,8 +3567,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -3607,8 +3607,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Union Find</tag>
         <tag>Greedy</tag>
+        <tag>Union Find</tag>
         <tag>Graph</tag>
       </tags>
   </entry>
@@ -3707,8 +3707,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Binary Search</tag>
         <tag>Array</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -3815,8 +3815,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Stack</tag>
         <tag>Hash Table</tag>
       </tags>
@@ -3913,8 +3913,8 @@
       </categories>
       <tags>
         <tag>Array</tag>
-        <tag>Sorting</tag>
         <tag>Math</tag>
+        <tag>Sorting</tag>
       </tags>
   </entry>
   <entry>
@@ -4016,8 +4016,8 @@
       </categories>
       <tags>
         <tag>Array</tag>
-        <tag>Divide and Conquer</tag>
         <tag>Math</tag>
+        <tag>Divide and Conquer</tag>
       </tags>
   </entry>
   <entry>
@@ -4056,8 +4056,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Sliding Window</tag>
       </tags>
   </entry>
@@ -4135,8 +4135,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Breadth-first Search</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Graph</tag>
         <tag>Depth-first Search</tag>
       </tags>
